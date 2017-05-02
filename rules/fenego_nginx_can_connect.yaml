@@ -12,7 +12,7 @@ trigger:
   parameters:
     url: fenego
 criteria:
-  trigger.body.tag:
+  trigger.body.tags:
     pattern: fenego
     type: contains
   trigger.body.alert_query:

@@ -16,7 +16,7 @@ criteria:
     pattern: fenego
     type: contains
   trigger.body.alert_query:
-    pattern: nginx_can_connect
+    pattern: nginx.can_connect
     type: contains
 action:
   ref: fenego.fenego_service_nginx

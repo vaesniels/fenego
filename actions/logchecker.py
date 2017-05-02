@@ -20,7 +20,7 @@ class selfheal(Action):
 		        ReadFile.write(line)
 	ReadFile.truncate()
 	ReadFile.close()
-	with open("/opt/stackstorm/packs/global/" + "logfile.log") as ReadFile:
+	with open("/opt/stackstorm/packs/fenego/" + "logfile.log") as ReadFile:
 		for line in ReadFile:
 		        if host in line and alert_query in line:
 				times = times + 1

@@ -56,3 +56,10 @@ parameters:
     snapshot:
         type: "string"
         required: true
+    frequency:
+        type: "integer"
+        required: true
+    period:
+        type: "integer"
+        required: true
+

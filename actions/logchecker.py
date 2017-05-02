@@ -4,10 +4,10 @@ import smtplib
 from st2actions.runners.pythonrunner import Action
 
 class selfheal(Action):
-    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot):
+    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period):
 	again = "no"
 	times = 0
-	OneHourAgo = datetime.now() - timedelta(hours=1)
+	OneHourAgo = datetime.now() - timedelta(hours=period)
 
 	ReadFile = open("/opt/stackstorm/packs/fenego/" + "logfile.log","r+")
 	lines = ReadFile.readlines()
@@ -24,7 +24,7 @@ class selfheal(Action):
 		for line in ReadFile:
 		        if host in line and alert_query in line:
 				times = times + 1
-	if times > 1 :
+	if times > frequency :
 		            print "Procces failed to manny times within the time limit"
 		            again = "yes"
 		            fromadd = 'tqwertyhgf@gmail.com'

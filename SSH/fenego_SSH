@@ -1,2 +1,1 @@
 host:'i-071fa7153ad392448'; username:'centos'; pem-file:'/opt/stackstorm/packs/global/SSH/pemfiles/pxl_stage_nielsvaes.pem'
-host:'niels-VirtualBox'; username:'niels2'; pem-file:'/opt/stackstorm/packs/global/SSH/pemfiles/niels2_rsa.pem'

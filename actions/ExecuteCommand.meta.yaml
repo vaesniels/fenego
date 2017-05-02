@@ -1,0 +1,17 @@
+---
+name: "ExecuteCommand"
+runner_type: "python-script"
+description: "Execute a command on a remote server"
+enabled: true
+entry_point: "ExecuteCommand.py"
+parameters:
+    host: 
+        type: "string"
+        required: true
+    company: 
+        type: "string"
+        required: true
+    cmd:
+        type: "string"
+        required: true 
+

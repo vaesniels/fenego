@@ -29,7 +29,7 @@
             ref: fenego.ExecuteCommand
             parameters:
                 host: '{{host}}'
-                cmd: "sudo systemctl start nginx"
+                cmd: "sudo touch /home/centos/nginx"
                 company: "fenego"
                      
     default: "checklog"

@@ -33,7 +33,7 @@ class selfheal(Action):
 		            username = 'tqwertyhgf@gmail.com'
 		            passwd = 'melon123dfgh10'
 
-		            text = "The procces '" + serv +  "' failed to manny times within the time limit on host: " + host + ", aditional action is needed."
+		            text = "The procces '" + alert_query +  "' failed to manny times within the time limit on host: " + host + ", aditional action is needed."
 
 		            try:
 		                    server = smtplib.SMTP('smtp.gmail.com:587')

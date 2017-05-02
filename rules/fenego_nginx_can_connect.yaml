@@ -1,0 +1,47 @@
+---
+description: nginx_can_connect
+tags: []
+type:
+  ref: standard
+  parameters:
+enabled: true
+name: fenego_nginx_can_connect
+trigger:
+  ref: core.4010b3cd-c1b1-406a-a30b-663e65442264
+  type: core.st2.webhook
+  parameters:
+    url: fenego
+criteria:
+  trigger.body.tag:
+    pattern: fenego
+    type: contains
+  trigger.body.alert_query:
+    pattern: nginx_can_connect
+    type: contains
+action:
+  ref: fenego.fenego_service_nginx
+  parameters:
+    body: '{{trigger.body.body}}'
+    alert_query: '{{trigger.body.alert_query}}'
+    alert_status: '{{trigger.body.alert_status}}'
+    last_updated: '{{trigger.body.last_updated}}'
+    event_type: '{{trigger.body.event_type}}'
+    tags: '{{trigger.body.tags}}'
+    alert_metric: '{{trigger.body.alert_metric}}'
+    title: '{{trigger.body.title}}'
+    host: '{{trigger.body.host}}'
+    priority: '{{trigger.body.priority}}'
+    alert_id: '{{trigger.body.alert_id}}'
+    link: '{{trigger.body.link}}'
+    user: '{{trigger.body.user}}'
+    date: '{{trigger.body.date}}'
+    snapshot: '{{trigger.body.snapshot}}'
+    alert_transition: '{{trigger.body.alert_transition}}'
+    agg_key: '{{trigger.body.agg_key}}'
+pack: fenego
+ref: fenego.fenego_nginx_can_connect
+id: 5908785798c9b708d4674aec
+uid: 'rule:fenego:fenego_nginx_can_connect'
+
+
+

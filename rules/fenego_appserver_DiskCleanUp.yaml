@@ -14,13 +14,13 @@ trigger:
 criteria:
   trigger.body.tags:
     pattern: fenego
-    type: contains
+    type: icontains
   trigger.body.server:
     pattern: appserver
-    type: contains
+    type: icontains
   trigger.body.alert_metric:
     pattern: system.disk.free
-    type: contains
+    type: icontains
 action:
   ref: fenego.DiskCleanUp
   parameters:

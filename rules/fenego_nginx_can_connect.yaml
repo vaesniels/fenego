@@ -14,10 +14,10 @@ trigger:
 criteria:
   trigger.body.tags:
     pattern: fenego
-    type: contains
+    type: icontains
   trigger.body.alert_query:
     pattern: nginx.can_connect
-    type: contains
+    type: icontains
 action:
   ref: fenego.fenego_service_nginx
   parameters:

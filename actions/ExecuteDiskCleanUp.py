@@ -4,14 +4,14 @@ import sys
 from st2actions.runners.pythonrunner import Action
 
 class selfheal(Action):
-    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,size,day,path):
+    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,size,day,path,company):
         
 	StackstormPath = "/opt/stackstorm/packs/fenego/"
 	hostname = "null"
 
-		with open(StackstormPath +"SSH/"+ company + '_SSH') as ReadFile: 
-		    for line in ReadFile:				  #Reads the file and loads the variables
-		        if "host:\'" + host in line:
+	with open(StackstormPath +"SSH/"+ company + '_SSH') as ReadFile: 
+		for line in ReadFile:				  #Reads the file and loads the variables
+			if "host:\'" + host in line:
 			    hostname = " "
 		            Credentials = line.split("; ")
 		            Credentials[0] = Credentials[0].strip("host:")
@@ -29,5 +29,5 @@ class selfheal(Action):
 			    returnvalue = os.system("ssh -i " + Pempath + " " + Username + "@" + Host + " \'sudo rm /tmp/"+alert_id+"\'")
 			    if returnvalue != 0 :
 				return (False,"Error deleteing temp log file")
-		if hostname is "null":
-		   return (False,"hostname was not found")   			 
+	if hostname is "null":
+	   return (False,"hostname was not found")   			 

@@ -65,3 +65,7 @@ parameters:
     day: 
         type: "string"
         required: true
+    company: 
+        type: "string"
+        required: true
+    

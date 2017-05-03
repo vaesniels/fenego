@@ -1,1 +1,1 @@
-host:'i-071fa7153ad392448'; username:'centos'; pem-file:'/opt/stackstorm/packs/global/SSH/pemfiles/pxl_stage_nielsvaes.pem'
+host:'i-071fa7153ad392448'; username:'centos'; pem-file:'/opt/stackstorm/packs/fenego/SSH/pemfiles/pxl_stage_nielsvaes.pem'

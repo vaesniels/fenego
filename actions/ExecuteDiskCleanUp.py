@@ -11,23 +11,23 @@ class selfheal(Action):
 
 	with open(StackstormPath +"SSH/"+ company + '_SSH') as ReadFile: 
 		for line in ReadFile:				  #Reads the file and loads the variables
-			if "host:\'" + host in line:
-			    hostname = " "
-		            Credentials = line.split("; ")
-		            Credentials[0] = Credentials[0].strip("host:")
-		            Host = Credentials[0].strip("\'")
-		            Credentials[1] = Credentials[1].strip("username:")
-		            Username = Credentials[1].strip("\'")
-		            Credentials[2] = Credentials[2].strip("pem-file:")
-		            Credentials[2] = Credentials[2].strip("\n")
-		            Pempath = Credentials[2].strip("\'")
-			    #Creating an SSH connection with pem key and running an python script on the remote host
-			    returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host  + " python -u - "+ alert_id + " " + path +" " + size + " " + day + " < " + StackstormPath + "python/DiskCleanUp.py")
-			    if returnvalue != 0 :
-				return (False,"Error executing pythonfile on remote host")
-		           			
-			    returnvalue = os.system("ssh -i " + Pempath + " " + Username + "@" + Host + " \'sudo rm /tmp/"+alert_id+"\'")
-			    if returnvalue != 0 :
-				return (False,"Error deleteing temp log file")
+			Credentials = line.split("; ")
+			Credentials[0] = Credentials[0].strip("host:")
+			Host = Credentials[0].strip("\'")
+			if host == Host :
+				hostname = " "
+				Credentials[1] = Credentials[1].strip("username:")
+				Username = Credentials[1].strip("\'")
+				Credentials[2] = Credentials[2].strip("pem-file:")
+				Credentials[2] = Credentials[2].strip("\n")
+				Pempath = Credentials[2].strip("\'")
+					    #Creating an SSH connection with pem key and running an python script on the remote host
+				returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host  + " python -u - "+ alert_id + " " + path +" " + size + " " + day + " < " + StackstormPath + "python/DiskCleanUp.py")
+				if returnvalue != 0 :
+					return (False,"Error executing pythonfile on remote host")
+				   			
+				returnvalue = os.system("ssh -i " + Pempath + " " + Username + "@" + Host + " \'sudo rm /tmp/"+alert_id+"\'")
+				if returnvalue != 0 :
+					return (False,"Error deleteing temp log file")
 	if hostname is "null":
-	   return (False,"hostname was not found")   			 
+		return (False,"hostname was not found")   			 

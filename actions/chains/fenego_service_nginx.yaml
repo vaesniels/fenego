@@ -23,6 +23,7 @@
                 snapshot: '{{snapshot}}'
                 frequency: "2"
                 period: "1"
+                company: "fenego"
             on-success: "execute cmd"  
         -
             name: "execute cmd"

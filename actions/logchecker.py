@@ -4,7 +4,7 @@ import smtplib
 from st2actions.runners.pythonrunner import Action
 
 class selfheal(Action):
-    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period):
+    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company):
 	again = "no"
 	times = 0
 	OneHourAgo = datetime.now() - timedelta(hours=period)
@@ -20,7 +20,7 @@ class selfheal(Action):
 		        ReadFile.write(line)
 	ReadFile.truncate()
 	ReadFile.close()
-	with open("/opt/stackstorm/packs/fenego/" + "logfile.log") as ReadFile:
+	with open("/opt/stackstorm/packs/fenego/logs/" + company + "_logfile.log") as ReadFile:
 		for line in ReadFile:
 		        if host in line and alert_query in line:
 				times = times + 1

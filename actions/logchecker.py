@@ -9,7 +9,7 @@ class selfheal(Action):
 	times = 0
 	OneHourAgo = datetime.now() - timedelta(hours=period)
 
-	ReadFile = open("/opt/stackstorm/packs/fenego/" + "logfile.log","r+")
+	ReadFile = open("/opt/stackstorm/packs/fenego/logs/" + company + "logfile.log","r+")
 	lines = ReadFile.readlines()
 	ReadFile.seek(0)
 	ReadFile.write(str(datetime.now()) + "; hostname:"+host + " , " + alert_query +"\n")

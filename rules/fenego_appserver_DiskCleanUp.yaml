@@ -15,6 +15,9 @@ criteria:
   trigger.body.tags:
     pattern: fenego
     type: contains
+  trigger.body.server:
+    pattern: appserver
+    type: contains
   trigger.body.alert_metric:
     pattern: system.disk.free
     type: contains

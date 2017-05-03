@@ -1,0 +1,51 @@
+---
+description: DiskCleanUp rule for a fenego webserver
+tags: []
+type:
+  ref: standard
+  parameters:
+enabled: true
+name: fenego_webserver_DiskCleanUp
+trigger:
+  ref: core.4010b3cd-c1b1-406a-a30b-663e65442264
+  type: core.st2.webhook
+  parameters:
+    url: fenego
+criteria:
+  trigger.body.tags:
+    pattern: fenego
+    type: contains
+  trigger.body.alert_metric:
+    pattern: system.disk.free
+    type: contains
+action:
+  ref: fenego.DiskCleanUp
+  parameters:
+    body: '{{trigger.body.body}}'
+    alert_query: '{{trigger.body.alert_query}}'
+    alert_status: '{{trigger.body.alert_status}}'
+    last_updated: '{{trigger.body.last_updated}}'
+    event_type: '{{trigger.body.event_type}}'
+    tags: '{{trigger.body.tags}}'
+    alert_metric: '{{trigger.body.alert_metric}}'
+    title: '{{trigger.body.title}}'
+    host: '{{trigger.body.host}}'
+    priority: '{{trigger.body.priority}}'
+    alert_id: '{{trigger.body.alert_id}}'
+    link: '{{trigger.body.link}}'
+    user: '{{trigger.body.user}}'
+    date: '{{trigger.body.date}}'
+    snapshot: '{{trigger.body.snapshot}}'
+    alert_transition: '{{trigger.body.alert_transition}}'
+    agg_key: '{{trigger.body.agg_key}}'
+    company: 'fenego'
+    path: '/var/log/nginx'
+    day: '7'
+    size: '1000'
+pack: fenego
+ref: fenego.fenego_webserver_DiskCleanUp
+id: 59099a2898c9b70921bfd701
+uid: 'rule:fenego:fenego_webserver_DisckCleanUp'
+
+
+

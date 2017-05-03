@@ -1,11 +1,11 @@
 ---
-description: DiskCleanUp rule for fenego
+description: DiskCleanUp rule for a fenego appserver
 tags: []
 type:
   ref: standard
   parameters:
 enabled: true
-name: fenego_DiskCleanUp
+name: fenego_appserver_DiskCleanUp
 trigger:
   ref: core.4010b3cd-c1b1-406a-a30b-663e65442264
   type: core.st2.webhook
@@ -43,9 +43,9 @@ action:
     day: '7'
     size: '1000'
 pack: fenego
-ref: fenego.fenego_DiskCleanUp
+ref: fenego.fenego_appserver_DiskCleanUp
 id: 59099a2898c9b70921bfd700
-uid: 'rule:fenego:fenego_DisckCleanUp'
+uid: 'rule:fenego:fenego_appserver_DisckCleanUp'
 
 
 

@@ -1,0 +1,36 @@
+---
+    chain:    
+        -
+            name: "checklog"
+            ref: fenego.logchecker
+            parameters:
+                agg_key: '{{agg_key}}'
+                alert_id: '{{alert_id}}'
+                alert_metric: '{{alert_metric}}'
+                alert_query: '{{alert_query}}'
+                alert_transition: '{{alert_transition}}'
+                alert_status: '{{alert_status}}'
+                title: '{{title}}'
+                last_updated: '{{last_updated}}'
+                date: '{{date}}'
+                event_type: '{{event_type}}'
+                body: '{{body}}'
+                user: '{{user}}'
+                link: '{{link}}'
+                priority: '{{priority}}'   
+                tags: '{{tags}}'
+                host: '{{host}}'     
+                snapshot: '{{snapshot}}'
+                frequency: "2"
+                period: "1"
+                company: "fenego"
+            on-success: "execute cmd"  
+        -
+            name: "execute cmd"
+            ref: fenego.ExecuteCommand
+            parameters:
+                host: '{{host}}'
+                cmd: "sudo systemctl restart hybris"
+                company: "fenego"
+                     
+    default: "checklog"

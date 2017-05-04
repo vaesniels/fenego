@@ -1,13 +1,13 @@
 ---
 # Action definition metadata
-name: "fenego_service_nginx"
+name: "fenego_tomcat_can_connect"
 description: "Simple Action Chain workflow"
 
 # `runner_type` has value `action-chain` to identify that action is an ActionChain.
 runner_type: "action-chain"
 
 # `entry_point` path to the ActionChain definition file, relative to the pack's action directory.
-entry_point: "chains/fenego_service_nginx.yaml"
+entry_point: "chains/fenego_tomcat_can_connect.yaml"
 
 enabled: true
 parameters:

@@ -18,28 +18,22 @@ for x in range(1, len(output) - 1):
     if output[x].startswith("/dev/"):
         os.system("echo " + output[x] + " >> /tmp/" + sys.argv[1])
 
-output = subprocess.check_output(
-    "sudo find / -type f -size +"+sys.argv[3]+"M -exec ls -lh --time-style=long-iso {} \; 2> /dev/null"" | awk '{ print $NF \": \" $5 \": \" $6}'",
-    shell=True) #This is going to generate a list of files that exceeds the predefined file size. The file size is defined in sys.argv[3].
+for i in range(0, len(paths)):
+	output = subprocess.check_output("sudo find " + paths[i]+ " -type f -size +"+sys.argv[3]+"M -exec ls -lh --time-style=long-iso {} \; 2> /dev/null"" | awk '{ print $NF \": \" $5 \": \" $6}'", shell=True) #This is going to generate a list of files that exceeds the predefined file size. The file size is defined in sys.argv[3].
+	ouput = output.split("\n")
+	for x in range(0, len(output) - 1): #with the paths that can be cleaned.
+		values = output[x].split(": ")
+		date = DT.datetime.strptime(values[2], "%Y-%m-%d")
+		if date > deletedate: #script will check if the file is older then the defined date. When it is , it's allowed to be deleted.
+		        os.system("echo " + values[0] + " >> /tmp/" + sys.argv[1])
+		        returncode = os.system("sudo zip -j " + values[0] + ".zip " + values[0])
+		        if returncode == 0: #Only when zipping the file is successfull the original file will be deleted.
+		            os.system("echo File : " + values[0] + " has been zipped >> /tmp/" + sys.argv[1])
+		            os.system("sudo rm " + values[0])
+		        else:
+		            os.system("echo Error while zipping : " + values[0] + " >> /tmp/" + sys.argv[1])
 
-os.system("echo '\nFiles bigger than "+sys.argv[3] + " MB :' >> /tmp/" + sys.argv[1])
-os.system("echo '" + output + "' >> /tmp/" + sys.argv[1]) #Putting some more info in the temp file.
-os.system("echo 'selected files :' >> /tmp/" + sys.argv[1])
 
-output = output.split("\n")  #Now we are going to compair the list of files that exceeds the file size
-for x in range(0, len(output) - 1): #with the paths that can be cleaned.
-    values = output[x].split(": ")
-    date = DT.datetime.strptime(values[2], "%Y-%m-%d")
-    for y in range(0, len(paths)):
-        if values[0].startswith(paths[y]): #When there is in one of the defined paths it will be zipped and then the file will be removed.
-            if date > deletedate: #script will check if the file is older then the defined date. When it is , it's allowed to be deleted.
-                os.system("echo " + values[0] + " >> /tmp/" + sys.argv[1])
-                returncode = os.system("sudo zip -j " + values[0] + ".zip " + values[0])
-                if returncode == 0: #Only when zipping the file is successfull the original file will be deleted.
-                    os.system("echo File : " + values[0] + " has been zipped >> /tmp/" + sys.argv[1])
-                    os.system("sudo rm " + values[0])
-                else:
-                    os.system("echo Error while zipping : " + values[0] + " >> /tmp/" + sys.argv[1])
 
 output = subprocess.check_output('df -h', shell=True)
 output = output.split("\n")

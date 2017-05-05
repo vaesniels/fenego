@@ -6,36 +6,36 @@ import smtplib
 
 today = DT.datetime.today()
 deletedate = today - DT.timedelta(days=int(sys.argv[4]))
-paths = sys.argv[2].split("$")
+paths = sys.argv[2].split("$") #sys.args[2] are the paths on the system that can be cleaned up.
 
-os.system('sudo touch /tmp/' + sys.argv[1])
-os.system('sudo chmod 777 /tmp/' + sys.argv[1])
+os.system('sudo touch /tmp/' + sys.argv[1])	#Create a temp file to store output and send this content as a mail.
+os.system('sudo chmod 777 /tmp/' + sys.argv[1]) #sys.args[1] is a unique eventID. this eventID is used to make sure the filename doens't already exists
 
 output = subprocess.check_output('df -h', shell=True)
 output = output.split("\n")
-os.system("echo " + output[0] + " >> /tmp/" + sys.argv[1])
+os.system("echo " + output[0] + " >> /tmp/" + sys.argv[1])  #This is going to put some info in the temp file.
 for x in range(1, len(output) - 1):
     if output[x].startswith("/dev/"):
         os.system("echo " + output[x] + " >> /tmp/" + sys.argv[1])
 
 output = subprocess.check_output(
     "sudo find / -type f -size +"+sys.argv[3]+"M -exec ls -lh --time-style=long-iso {} \; 2> /dev/null"" | awk '{ print $NF \": \" $5 \": \" $6}'",
-    shell=True)
+    shell=True) #This is going to generate a list of files that exceeds the predefined file size. The file size is defined in sys.argv[3].
 
 os.system("echo '\nFiles bigger than "+sys.argv[3] + " MB :' >> /tmp/" + sys.argv[1])
-os.system("echo '" + output + "' >> /tmp/" + sys.argv[1])
+os.system("echo '" + output + "' >> /tmp/" + sys.argv[1]) #Putting some more info in the temp file.
 os.system("echo 'selected files :' >> /tmp/" + sys.argv[1])
 
-output = output.split("\n")
-for x in range(0, len(output) - 1):
+output = output.split("\n")  #Now we are going to compair the list of files that exceeds the file size
+for x in range(0, len(output) - 1): #with the paths that can be cleaned.
     values = output[x].split(": ")
     date = DT.datetime.strptime(values[2], "%Y-%m-%d")
     for y in range(0, len(paths)):
-        if paths[y] in values[0]:
-            if date > deletedate:
+        if values[0].startswith(paths[y]): #When there is in one of the defined paths it will be zipped and then the file will be removed.
+            if date > deletedate: #script will check if the file is older then the defined date. When it is , it's allowed to be deleted.
                 os.system("echo " + values[0] + " >> /tmp/" + sys.argv[1])
                 returncode = os.system("sudo zip -j " + values[0] + ".zip " + values[0])
-                if returncode == 0:
+                if returncode == 0: #Only when zipping the file is successfull the original file will be deleted.
                     os.system("echo File : " + values[0] + " has been zipped >> /tmp/" + sys.argv[1])
                     os.system("sudo rm " + values[0])
                 else:
@@ -44,7 +44,7 @@ for x in range(0, len(output) - 1):
 output = subprocess.check_output('df -h', shell=True)
 output = output.split("\n")
 os.system("echo ' ' >> /tmp/" + sys.argv[1])
-os.system("echo " + output[0] + " >> /tmp/" + sys.argv[1])
+os.system("echo " + output[0] + " >> /tmp/" + sys.argv[1])#Again putting some info in the temp file.
 for x in range(1, len(output) - 1):
     if output[x].startswith("/dev/"):
         os.system("echo " + output[x] + " >> /tmp/" + sys.argv[1])
@@ -57,7 +57,7 @@ text = subprocess.check_output("sudo cat /tmp/" + sys.argv[1], shell=True)
 username = 'tqwertyhgf@gmail.com'
 passwd = 'melon123dfgh10'
 
-try:
+try: #trying to mail the info from the temp file.
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.ehlo()
     server.starttls()

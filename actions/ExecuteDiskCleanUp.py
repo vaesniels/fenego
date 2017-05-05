@@ -22,6 +22,11 @@ class selfheal(Action):
 					Pempath = Credentials[2].strip("\'")
 						    #Creating an SSH connection with pem key and running an python script on the remote host
 					returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host  + " python -u - "+ alert_id + " " + path +" " + size + " " + day + " < " + stackstormpath + "python/DiskCleanUp.py")
+#passing some variables to the pythonscript 
+#alert_id will be sys.argv[1]
+#path will be sys.argv[2]
+#size will be sys.argv[3]
+#day will be sys.argv[4]
 					if returnvalue != 0 :
 						return (False,"Error executing pythonfile on remote host")
 					   			

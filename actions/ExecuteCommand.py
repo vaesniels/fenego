@@ -6,22 +6,23 @@ from st2actions.runners.pythonrunner import Action
 class selfheal(Action):
     def run(self,host,company,cmd,stackstormpath):
         
+	hostname = "null"
+
 	if company is not "null":
-		try:
-			with open(stackstormpath +"SSH/"+ company + '_SSH') as ReadFile: 
+		try: #trying to make an SSH connection and run a command
+			with open(stackstormpath +"SSH/"+ company + '_SSH') as ReadFile: #Opens the SSH information file from the company.
 				for line in ReadFile:				  #Reads the file and loads the variables
-					if "host:\'" + host in line:
+					Credentials = line.split("; ")
+					Credentials[0] = Credentials[0].strip("host:")
+					Host = Credentials[0].strip("\'")
+					if host == Host : #If hostname is foud the script will put the info in local variables.
 					    hostname = " "
-					    Credentials = line.split("; ")
-					    Credentials[0] = Credentials[0].strip("host:")
-					    Host = Credentials[0].strip("\'")
-					    Credentials[1] = Credentials[1].strip("username:")
+					    Credentials[1] = Credentials[1].strip("username:") 
 					    Username = Credentials[1].strip("\'")
 					    Credentials[2] = Credentials[2].strip("pem-file:")
 					    Credentials[2] = Credentials[2].strip("\n")
 					    Pempath = Credentials[2].strip("\'")
-					    #Creating an SSH connection with pem key and running an python script on the remote host
-					    print "trying to execute cmd " + cmd
+					    #Creating an SSH connection with pem key and executing a command
 					    returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'"+ cmd +"\'")
 					    if returnvalue != 0 :
 						return (False,"Error executing command on remote host")

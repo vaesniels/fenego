@@ -6,7 +6,6 @@ from st2actions.runners.pythonrunner import Action
 class selfheal(Action):
     def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company,stackstormpath):
 
-	limit = "no"
 	times = 0
 	SomeHoursAgo = datetime.now() - timedelta(hours=period) #Calculating a date 
 	try: #Opens the log file and deletes all log entrys older then "SomeHoursAgo"
@@ -34,7 +33,6 @@ class selfheal(Action):
 #When the numbers of errors extends the predefined allowed frequency. The script will send an e-mail telling you that the service failed to manny times.
 	if times > frequency :
 		            print "Procces failed to manny times within the time limit"
-		            again = "yes"
 		            fromadd = 'tqwertyhgf@gmail.com'
 		            toadd = 't.qwertyhgf@gmail.com'
 
@@ -56,7 +54,8 @@ class selfheal(Action):
 		            except:
 		                    print("Error:unable to send mail")
 
-	if limit == "no":
-        	return True #when the numbers of errors didn't exceeds the limit the script will return "true" letting stackstorm know everything is ok.
+			    return (False, "To manny restart attempts")
+
 	else:
-        	return (False, "To manny restart attempts")
+        	return True #when the numbers of errors didn't exceeds the limit the script will return "true" letting stackstorm know everything is ok.
+

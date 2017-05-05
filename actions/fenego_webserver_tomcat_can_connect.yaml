@@ -1,6 +1,6 @@
 ---
 # Action definition metadata
-name: "fenego_tomcat_can_connect"
+name: "fenego_webserver_tomcat_can_connect"
 description: "Simple Action Chain workflow"
 
 # `runner_type` has value `action-chain` to identify that action is an ActionChain.

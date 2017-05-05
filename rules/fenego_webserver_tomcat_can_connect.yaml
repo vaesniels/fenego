@@ -1,11 +1,11 @@
 ---
-description: tomcat_can_connect
+description: fenego_webserver_tomcat_can_connect
 tags: []
 type:
   ref: standard
   parameters:
 enabled: true
-name: fenego_tomcat_can_connect
+name: fenego_webserver_tomcat_can_connect
 trigger:
   ref: core.4010b3cd-c1b1-406a-a30b-663e65442264
   type: core.st2.webhook
@@ -19,7 +19,7 @@ criteria:
     pattern: tomcat.can_connect
     type: icontains
 action:
-  ref: fenego.fenego_tomcat_can_connect
+  ref: fenego.fenego_webserver_tomcat_can_connect
   parameters:
     body: '{{trigger.body.body}}'
     alert_query: '{{trigger.body.alert_query}}'
@@ -40,9 +40,9 @@ action:
     agg_key: '{{trigger.body.agg_key}}'
     stackstormpath: '{{trigger.body.stackstormpath}}'
 pack: fenego
-ref: fenego.fenego_tomcat_can_connect
+ref: fenego.fenego_webserver_tomcat_can_connect
 id: 5908785798c9b708d4674aee
-uid: 'rule:fenego:fenego_tomcat_can_connect'
+uid: 'rule:fenego:fenego_webserver_tomcat_can_connect'
 
 
 

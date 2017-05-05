@@ -4,12 +4,12 @@ import smtplib
 from st2actions.runners.pythonrunner import Action
 
 class selfheal(Action):
-    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company):
+    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company,stackstormpath):
 	limit = "no"
 	times = 0
 	OneHourAgo = datetime.now() - timedelta(hours=period)
 	try:
-		ReadFile = open("/opt/stackstorm/packs/fenego/logs/" + company + "_logfile.log","r+")
+		ReadFile = open(stackstormpath + "logs/" + company + "_logfile.log","r+")
 		lines = ReadFile.readlines()
 		ReadFile.seek(0)
 		ReadFile.write(str(datetime.now()) + "; hostname:"+host + " , " + alert_query +"\n")
@@ -24,7 +24,7 @@ class selfheal(Action):
 		return (False, "Error loading the log file")
 	
 	try:
-		with open("/opt/stackstorm/packs/fenego/logs/" + company + "_logfile.log") as ReadFile:
+		with open(stackstormpath + "logs/" + company + "_logfile.log") as ReadFile:
 			for line in ReadFile:
 				if host in line and alert_query in line:
 					times = times + 1

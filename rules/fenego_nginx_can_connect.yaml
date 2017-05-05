@@ -38,6 +38,7 @@ action:
     snapshot: '{{trigger.body.snapshot}}'
     alert_transition: '{{trigger.body.alert_transition}}'
     agg_key: '{{trigger.body.agg_key}}'
+    stackstormpath: '{{trigger.body.stackstormpath}}'
 pack: fenego
 ref: fenego.fenego_nginx_can_connect
 id: 5908785798c9b708d4674aec

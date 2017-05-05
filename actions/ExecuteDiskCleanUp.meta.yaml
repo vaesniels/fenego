@@ -68,4 +68,7 @@ parameters:
     company: 
         type: "string"
         required: true
+    stackstormpath: 
+        type: "string"
+        required: true
     

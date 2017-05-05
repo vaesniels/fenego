@@ -24,11 +24,13 @@
                 frequency: "2"
                 period: "1"
                 company: "fenego"
+                stackstormpath: '{{stackstormpath}}'
             on-success: "execute cmd"  
         -
             name: "execute cmd"
             ref: fenego.ExecuteCommand
             parameters:
+                stackstormpath: '{{stackstormpath}}'
                 host: '{{host}}'
                 cmd: "sudo systemctl start nginx"
                 company: "fenego"

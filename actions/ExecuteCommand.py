@@ -4,13 +4,11 @@ import sys
 from st2actions.runners.pythonrunner import Action
 
 class selfheal(Action):
-    def run(self,host,company,cmd,):
+    def run(self,host,company,cmd,stackstormpath):
         
-	StackstormPath = "/opt/stackstorm/packs/fenego/" 
-
 	if company is not "null":
 		try:
-			with open(StackstormPath +"SSH/"+ company + '_SSH') as ReadFile: 
+			with open(stackstormpath +"SSH/"+ company + '_SSH') as ReadFile: 
 				for line in ReadFile:				  #Reads the file and loads the variables
 					if "host:\'" + host in line:
 					    hostname = " "

@@ -41,6 +41,7 @@ action:
     snapshot: '{{trigger.body.snapshot}}'
     alert_transition: '{{trigger.body.alert_transition}}'
     agg_key: '{{trigger.body.agg_key}}'
+    stackstormpath : '{{trigger.body.stackstormpath}}'
     company: 'fenego'
     path: '/var/log/nginx'
     day: '7'

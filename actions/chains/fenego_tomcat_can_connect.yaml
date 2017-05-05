@@ -21,6 +21,7 @@
                 tags: '{{tags}}'
                 host: '{{host}}'     
                 snapshot: '{{snapshot}}'
+                stackstormpath: '{{stackstormpath}}'
                 frequency: "2"
                 period: "1"
                 company: "fenego"
@@ -29,6 +30,7 @@
             name: "execute cmd"
             ref: fenego.ExecuteCommand
             parameters:
+                stackstormpath: '{{stackstormpath}}'
                 host: '{{host}}'
                 cmd: "sudo systemctl restart hybris"
                 company: "fenego"

@@ -15,6 +15,9 @@ criteria:
   trigger.body.tags:
     pattern: fenego
     type: icontains
+  trigger.body.server:
+    pattern: webserver
+    type: icontains
   trigger.body.alert_query:
     pattern: tomcat.can_connect
     type: icontains

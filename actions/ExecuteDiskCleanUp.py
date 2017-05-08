@@ -51,6 +51,10 @@ class ExecuteDiskCleanUp(Action):
 #day will be sys.argv[4]
 				if returnvalue != 0 :
 					return (False,"Error executing pythonfile on remote host")
+
+				returnvalue = os.system("ssh -i " + Pempath + " " + Username + "@" + Host + " \'sudo rm /tmp/"+alert_id+"\'")
+				if returnvalue != 0 :
+					return (False,"Error deleteing temp log file")
 				output = subprocess.check_output("sudo ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'df -h\'", shell=True)
 				output = output.split("\n")
 				for x in range(1, len(output) - 1):
@@ -77,8 +81,5 @@ class ExecuteDiskCleanUp(Action):
 					print "Subject:Diskcleanup kinda failed"
 					return (False, "Didn't cleaned enough disk space")
 				   			
-				returnvalue = os.system("ssh -i " + Pempath + " " + Username + "@" + Host + " \'sudo rm /tmp/"+alert_id+"\'")
-				if returnvalue != 0 :
-					return (False,"Error deleteing temp log file")
 	if hostname is "null":
 		return (False,"hostname was not found")   			 

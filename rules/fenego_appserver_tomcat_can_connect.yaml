@@ -22,7 +22,7 @@ criteria:
     pattern: tomcat.can_connect
     type: icontains
 action:
-  ref: fenego.fenego_appserver_tomcat_can_connect
+  ref: fenego.service
   parameters:
     body: '{{trigger.body.body}}'
     alert_query: '{{trigger.body.alert_query}}'

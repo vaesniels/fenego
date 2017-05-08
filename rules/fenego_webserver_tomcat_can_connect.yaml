@@ -22,7 +22,7 @@ criteria:
     pattern: tomcat.can_connect
     type: icontains
 action:
-  ref: fenego.fenego_webserver_tomcat_can_connect
+  ref: fenego.service
   parameters:
     body: '{{trigger.body.body}}'
     alert_query: '{{trigger.body.alert_query}}'
@@ -42,6 +42,10 @@ action:
     alert_transition: '{{trigger.body.alert_transition}}'
     agg_key: '{{trigger.body.agg_key}}'
     stackstormpath: '{{trigger.body.stackstormpath}}'
+    company: 'fenego'
+    period: '1'
+    frequency: '2'
+    cmd: 'sudo systemctl restart tomcat'
 pack: fenego
 ref: fenego.fenego_webserver_tomcat_can_connect
 id: 5908785798c9b708d4674aee

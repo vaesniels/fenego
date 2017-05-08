@@ -1,13 +1,13 @@
 ---
 # Action definition metadata
-name: "fenego_webserver_tomcat_can_connect"
+name: "Service"
 description: "Simple Action Chain workflow"
 
 # `runner_type` has value `action-chain` to identify that action is an ActionChain.
 runner_type: "action-chain"
 
 # `entry_point` path to the ActionChain definition file, relative to the pack's action directory.
-entry_point: "chains/fenego_webserver_tomcat_can_connect.yaml"
+entry_point: "chains/service.yaml"
 
 enabled: true
 parameters:
@@ -63,6 +63,18 @@ parameters:
         type: "string"
         required: true
     stackstormpath:
+        type: "string"
+        required: true
+    frequency:
+        type: "integer"
+        required: true
+    period:
+        type: "integer"
+        required: true
+    cmd:
+        type: "string"
+        required: true
+    company:
         type: "string"
         required: true
 

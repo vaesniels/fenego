@@ -22,7 +22,7 @@ criteria:
     pattern: system.disk.free
     type: icontains
 action:
-  ref: fenego.DiskCleanUp
+  ref: fenego.DiskCleanUpChain
   parameters:
     body: '{{trigger.body.body}}'
     alert_query: '{{trigger.body.alert_query}}'

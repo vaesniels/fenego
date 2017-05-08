@@ -19,7 +19,7 @@ criteria:
     pattern: nginx.can_connect
     type: icontains
 action:
-  ref: fenego.service
+  ref: fenego.Service
   parameters:
     body: '{{trigger.body.body}}'
     alert_query: '{{trigger.body.alert_query}}'

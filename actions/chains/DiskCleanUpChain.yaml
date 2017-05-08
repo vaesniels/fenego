@@ -24,7 +24,7 @@
                 size: '{{size}}'
                 day: '{{day}}'
                 company: "fenego"
-		path: '{{path}}'
+	        path: '{{path}}'
                 stackstormpath: '{{stackstormpath}}'
             on-failure: "send mail"  
         -

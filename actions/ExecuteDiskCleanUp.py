@@ -62,7 +62,7 @@ class selfheal(Action):
 						    diskused = diskused.replace(",", ".")
 						    diskused = float(diskused) * 1024
 						DiskSpaceAfterClean += float(diskused)
-					if DiskSpaceAfterClean =< (TotalDiskSpaceUsed - DiskSpaceToClean) :
+					if DiskSpaceAfterClean <= (TotalDiskSpaceUsed - DiskSpaceToClean) :
 						print "genoeg schoongemaakt"
 					else :
 						print "nie genoeg schoongemaakt"

@@ -32,11 +32,11 @@ class selfheal(Action):
 						disk = output[x].split(" ")
 						while '' in disk :
 							disk.remove('')
-						if "G" in disk[3] :
-						    diskused = disk[3].strip("G")
+						if "G" in disk[2] :
+						    diskused = disk[2].strip("G")
 						    diskused = diskused.replace(",", ".")
-						if "T" in disk[3] :
-						    diskused = disk[3].strip("T")
+						if "T" in disk[2] :
+						    diskused = disk[2].strip("T")
 						    diskused = diskused.replace(",", ".")
 						    diskused = float(diskused) * 1024
 						SpaceToClean = (float(diskused) / 100 ) * 10
@@ -58,11 +58,11 @@ class selfheal(Action):
 					disk = output[x].split(" ")
 					while '' in disk :
 						disk.remove('')
-					if "G" in disk[3] :
-					    diskused = disk[3].strip("G")
+					if "G" in disk[2] :
+					    diskused = disk[2].strip("G")
 					    diskused = diskused.replace(",", ".")
-					if "T" in disk[3] :
-					    diskused = disk[3].strip("T")
+					if "T" in disk[2] :
+					    diskused = disk[2].strip("T")
 					    diskused = diskused.replace(",", ".")
 					    diskused = float(diskused) * 1024
 					DiskSpaceAfterClean += float(diskused)

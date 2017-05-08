@@ -45,7 +45,7 @@ action:
     path: '/opt/hybris/hybris/log'
     day: '7'
     size: '1000'
-    stackstormpath: '{{stackstormpath}}'
+    stackstormpath: '{{trigger.body.stackstormpath}}'
 pack: fenego
 ref: fenego.fenego_appserver_DiskCleanUp
 id: 59099a2898c9b70921bfd700

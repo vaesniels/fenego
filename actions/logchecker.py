@@ -3,7 +3,7 @@ import smtplib
 
 from st2actions.runners.pythonrunner import Action
 
-class selfheal(Action):
+class logchecker(Action):
     def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company,stackstormpath):
 
 	times = 0

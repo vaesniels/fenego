@@ -4,7 +4,7 @@ import subprocess
 
 from st2actions.runners.pythonrunner import Action
 
-class selfheal(Action):
+class ExecuteDiskCleanUp(Action):
     def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,size,day,path,company,stackstormpath):
         
 	hostname = "null"
@@ -67,9 +67,15 @@ class selfheal(Action):
 					    diskused = float(diskused) * 1024
 					DiskSpaceAfterClean += float(diskused)
 				if DiskSpaceAfterClean <= (TotalDiskSpaceUsed - DiskSpaceToClean) :
-					print "genoeg schoongemaakt"
+					return True 
 				else :
-					print "nie genoeg schoongemaakt"
+					print "Username:tqwertyhgf@gmail.com"
+					print "Fromadd:tqwertyhgf@gmail.com"
+					print "Toadd:t.qwertyhgf@gmail.com"
+					print "Passwd:melon123dfgh10"
+					print "Message:There isn't cleaned enough diskspace"
+					print "Subject:Diskcleanup kinda failed"
+					return (False, "Didn't cleaned enough disk space")
 				   			
 				returnvalue = os.system("ssh -i " + Pempath + " " + Username + "@" + Host + " \'sudo rm /tmp/"+alert_id+"\'")
 				if returnvalue != 0 :

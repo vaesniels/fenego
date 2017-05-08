@@ -3,7 +3,7 @@ import sys
 
 from st2actions.runners.pythonrunner import Action
 
-class selfheal(Action):
+class ExecuteCommand(Action):
     def run(self,host,company,cmd,stackstormpath):
         
 	hostname = "null"

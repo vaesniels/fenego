@@ -1,8 +1,8 @@
 ---
     chain:    
         -
-            name: "checklog"
-            ref: fenego.logchecker
+            name: "Diskclean"
+            ref: fenego.DiskCleanUp
             parameters:
                 agg_key: '{{agg_key}}'
                 alert_id: '{{alert_id}}'
@@ -21,18 +21,16 @@
                 tags: '{{tags}}'
                 host: '{{host}}'     
                 snapshot: '{{snapshot}}'
+                size: '{{size}}'
+                day: '{{day}}'
+                company: "fenego"
+		path: '{{path}}'
                 stackstormpath: '{{stackstormpath}}'
-                frequency: '{{frequency}}'
-                period: '{{period}}'
-                company: '{{company}}'
-            on-success: "execute cmd"  
+            on-failure: "send mail"  
         -
-            name: "execute cmd"
-            ref: fenego.ExecuteCommand
+            name: "send mail"
+            ref: fenego.Mail
             parameters:
-                stackstormpath: '{{stackstormpath}}'
-                host: '{{host}}'
-                cmd: '{{cmd}}'
-                company: '{{company}}'
+                message: "{{Diskclean.stdout}}"
                      
-    default: "checklog"
+    default: "Diskclean"

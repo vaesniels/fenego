@@ -42,6 +42,11 @@ action:
     alert_transition: '{{trigger.body.alert_transition}}'
     agg_key: '{{trigger.body.agg_key}}'
     stackstormpath: '{{trigger.body.stackstormpath}}'
+    company: 'fenego'
+    period: '1'
+    frequency: '2'
+    cmd: 'sudo systemctl restart hybris'
+    
 pack: fenego
 ref: fenego.fenego_appserver_tomcat_can_connect
 id: 5908785798c9b708d4674aef

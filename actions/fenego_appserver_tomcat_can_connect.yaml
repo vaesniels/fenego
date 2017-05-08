@@ -65,4 +65,16 @@ parameters:
     stackstormpath:
         type: "string"
         required: true
+    frequency:
+        type: "integer"
+        required: true
+    period:
+        type: "integer"
+        required: true
+    cmd:
+        type: "string"
+        required: true
+    company:
+        type: "string"
+        required: true
 

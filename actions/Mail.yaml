@@ -1,0 +1,11 @@
+---
+name: "Mail"
+runner_type: "python-script"
+description: "Send a mail"
+enabled: true
+entry_point: "Mail.py"
+parameters:
+    message: 
+        type: "string"
+        required: true
+

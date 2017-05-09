@@ -73,12 +73,12 @@ class ExecuteDiskCleanUp(Action):
 				if DiskSpaceAfterClean <= (TotalDiskSpaceUsed - DiskSpaceToClean) :
 					return True 
 				else :
-					SpaceCleaned = TotalDiskSpaceUsed - DiskSpaceAftherClean
+					SpaceCleaned = TotalDiskSpaceUsed - DiskSpaceAfterClean
 					print "Username:tqwertyhgf@gmail.com"
 					print "Fromadd:tqwertyhgf@gmail.com"
 					print "Toadd:t.qwertyhgf@gmail.com"
 					print "Passwd:melon123dfgh10"
-					print "Message:DiskCleanup on host:" + host + " company:" + company + " cleaned only " + SpaceCleaned + "G "
+					print "Message:DiskCleanup on host:" + host + " Company:" + company + " Disk usage was: " + str(TotalDiskSpaceUsed) + "G " + " after clean up " + str(DiskSpaceAfterClean) + "G " + " only " + str(SpaceCleaned) + "G has been cleaned"
 					print "Subject:Diskcleanup didn't cleaned enough space"
 					return (False, "Didn't cleaned enough disk space")
 				   			

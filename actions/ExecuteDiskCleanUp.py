@@ -43,7 +43,7 @@ class ExecuteDiskCleanUp(Action):
 						TotalDiskSpaceUsed += float(diskused)
 						DiskSpaceToClean = DiskSpaceToClean + SpaceToClean
 
-				returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host  + " python -u - "+ alert_id + " " + path +" " + size + " " + day + " < " + stackstormpath + "python/DiskCleanUp.py")
+				returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host  + " python -u - " + path + " " + size + " " + day + " < " + stackstormpath + "python/DiskCleanUp.py")
 #passing some variables to the pythonscript 
 #alert_id will be sys.argv[1]
 #path will be sys.argv[2]

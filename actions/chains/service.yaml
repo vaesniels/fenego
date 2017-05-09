@@ -25,7 +25,14 @@
                 frequency: '{{frequency}}'
                 period: '{{period}}'
                 company: '{{company}}'
-            on-success: "execute cmd"  
+                email: '{{email}}'
+            on-success: "execute cmd" 
+            on-failure: "send mail"  
+        -
+            name: "send mail"
+            ref: fenego.Mail
+            parameters:
+                message: "{{Diskclean.stdout}}" 
         -
             name: "execute cmd"
             ref: fenego.ExecuteCommand

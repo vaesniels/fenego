@@ -46,6 +46,7 @@ action:
     period: '1'
     frequency: '2'
     cmd: 'sudo systemctl restart hybris'
+    email: 'tqwertyhgf@gmail.com'
     
 pack: fenego
 ref: fenego.fenego_appserver_tomcat_can_connect

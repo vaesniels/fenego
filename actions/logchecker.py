@@ -4,7 +4,7 @@ import smtplib
 from st2actions.runners.pythonrunner import Action
 
 class logchecker(Action):
-    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company,stackstormpath):
+    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company,stackstormpath,email):
 
 	times = 0
 	SomeHoursAgo = datetime.now() - timedelta(hours=period) #Calculating a date 
@@ -32,27 +32,9 @@ class logchecker(Action):
 		return (False, "Error reading the log file.")
 #When the numbers of errors extends the predefined allowed frequency. The script will send an e-mail telling you that the service failed to manny times.
 	if times > frequency :
-		            print "Procces failed to manny times within the time limit"
-		            fromadd = 'tqwertyhgf@gmail.com'
-		            toadd = 't.qwertyhgf@gmail.com'
-
-		            username = 'tqwertyhgf@gmail.com'
-		            passwd = 'melon123dfgh10'
-
-		            text = "The procces '" + alert_query +  "' failed to manny times within the time limit on host: " + host + ", aditional action is needed."
-
-		            try:
-		                    server = smtplib.SMTP('smtp.gmail.com:587')
-		                    server.ehlo()
-		                    server.starttls()
-		                    server.login(username, passwd)
-		                    msg = 'Subject: {}\n\n{}'.format("Proccess failed to manny times", text)
-		                    server.sendmail(fromadd, toadd, msg)
-		                    print("Mail Send Successfully")
-		                    server.quit()
-
-		            except:
-		                    print("Error:unable to send mail")
+		            print "Toadd:" + email
+		            print "Message:The procces '" + alert_query +  "' failed to manny times within the time limit on host: " + host + ", aditional action is needed."
+			    print "Subject:Procces failed to manny times"
 
 			    return (False, "To manny restart attempts")
 

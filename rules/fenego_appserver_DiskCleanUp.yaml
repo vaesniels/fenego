@@ -46,6 +46,7 @@ action:
     day: '7'
     size: '1000'
     stackstormpath: '{{trigger.body.stackstormpath}}'
+    email: 'tqwertyhgf@gmail.com,wtdniels@hotmail.com'
 pack: fenego
 ref: fenego.fenego_appserver_DiskCleanUp
 id: 59099a2898c9b70921bfd700

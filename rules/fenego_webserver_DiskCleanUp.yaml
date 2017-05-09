@@ -46,6 +46,7 @@ action:
     path: '/var/log/nginx'
     day: '7'
     size: '1000'
+    email: 'tqwertyhgf@gmail.com,wtdniels@hotmail.com'
 pack: fenego
 ref: fenego.fenego_webserver_DiskCleanUp
 id: 59099a2898c9b70921bfd701

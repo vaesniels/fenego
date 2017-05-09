@@ -1,6 +1,8 @@
 import os
 import sys
 import smtplib
+from email.mime.text import MIMEText
+
 from st2actions.runners.pythonrunner import Action
 
 class mail(Action):
@@ -25,8 +27,13 @@ class mail(Action):
 		server.ehlo()
 		server.starttls()
 		server.login('StackstormTool@gmail.com', 'fenego101')
-		msg = 'Subject: {}\n\n{}'.format(subject, text)
-		server.sendmail('StackstormTool@gmail.com', toadd, msg)
+		msg = MIMEText(text)
+		sender = 'stackstormtool@gmail.com'
+		recipients = toadd
+		msg['Subject'] = subject
+		msg['From'] = sender
+		msg['To'] = recipients
+		server.sendmail(sender, recipients.split(','), msg.as_string())
 		print("Mail Send Successfully")
 		server.quit()
 

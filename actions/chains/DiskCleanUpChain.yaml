@@ -26,6 +26,7 @@
                 company: "fenego"
                 path: '{{path}}'
                 stackstormpath: '{{stackstormpath}}'
+                email: '{{email}}'
             on-failure: "send mail"  
         -
             name: "send mail"

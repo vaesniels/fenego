@@ -5,7 +5,7 @@ import subprocess
 from st2actions.runners.pythonrunner import Action
 
 class ExecuteDiskCleanUp(Action):
-    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,size,day,path,company,stackstormpath):
+    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,size,day,path,company,stackstormpath,email):
         
 	hostname = "null"
 	DiskSpaceToClean = 0.0
@@ -52,9 +52,6 @@ class ExecuteDiskCleanUp(Action):
 				if returnvalue != 0 :
 					return (False,"Error executing pythonfile on remote host")
 
-				returnvalue = os.system("ssh -i " + Pempath + " " + Username + "@" + Host + " \'sudo rm /tmp/"+alert_id+"\'")
-				if returnvalue != 0 :
-					return (False,"Error deleteing temp log file")
 				output = subprocess.check_output("sudo ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'df -h\'", shell=True)
 				output = output.split("\n")
 				for x in range(1, len(output) - 1):
@@ -74,7 +71,7 @@ class ExecuteDiskCleanUp(Action):
 					return True 
 				else :
 					SpaceCleaned = TotalDiskSpaceUsed - DiskSpaceAfterClean
-					print "Toadd:tqwertyhgf@gmail.com"
+					print "Toadd:" + email
 					print "Message:DiskCleanup on host:" + host + " Company:" + company + " Disk usage was: " + str(TotalDiskSpaceUsed) + "G " + " after clean up " + str(DiskSpaceAfterClean) + "G " + " only " + str(SpaceCleaned) + "G has been cleaned"
 					print "Subject:Diskcleanup didn't cleaned enough space"
 					return (False, "Didn't cleaned enough disk space")

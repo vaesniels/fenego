@@ -71,4 +71,7 @@ parameters:
     stackstormpath: 
         type: "string"
         required: true
+    email: 
+        type: "string"
+        required: true
     

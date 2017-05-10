@@ -1,0 +1,11 @@
+---
+name: "Slack"
+runner_type: "python-script"
+description: "Send message to slack"
+enabled: true
+entry_point: "Slack.py"
+parameters:
+    message: 
+        type: "string"
+        required: true
+

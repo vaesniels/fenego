@@ -39,5 +39,6 @@ class logchecker(Action):
 			    return (False, "To manny restart attempts")
 
 	else:
+		print "The procces '" + alert_query +  "' failed on host: " + host + ", But Stackstorm is trying to fix it."
         	return True #when the numbers of errors didn't exceeds the limit the script will return "true" letting stackstorm know everything is ok.
 

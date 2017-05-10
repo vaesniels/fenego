@@ -32,7 +32,7 @@
             name: "send mail"
             ref: fenego.Mail
             parameters:
-                message: "{{Diskclean.stdout}}" 
+                message: "{{checklog.stdout}}" 
         -
             name: "execute cmd"
             ref: fenego.ExecuteCommand
@@ -41,5 +41,11 @@
                 host: '{{host}}'
                 cmd: '{{cmd}}'
                 company: '{{company}}'
+            on-success: "Send to Slack"
+        -
+            name: "Send to Slack"
+            ref: fenego.Slack
+            parameters:
+                message: '{{checklog.stdout}}'
                      
     default: "checklog"

@@ -43,11 +43,16 @@
                 host: '{{host}}'
                 cmd: '{{cmd}}'
                 company: '{{company}}'
-            on-failure: "Send to Slack"
+            on-failure: "cmd to Slack"
         -
             name: "Send to Slack"
             ref: fenego.Slack
             parameters:
                 message: '{{checklog.stdout}}'
+        -
+            name: "cmd to Slack"
+            ref: fenego.Slack
+            parameters:
+                message: '{{execute cmd.stdout}}'
                      
     default: "checklog"

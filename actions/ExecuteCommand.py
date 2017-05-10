@@ -28,7 +28,7 @@ class ExecuteCommand(Action):
 						print "Slack:An error occured while trying to execute the command: " + cmd + " on the host " + host + " of company: " + company
 						return (False,"Error executing command on remote host")
 		except:
-			print "Slack:Couldn't make SSH connection to the host:" host + " of company: " + company
+			print "Slack:Couldn't make SSH connection to the host:" + host + " of company: " + company
 			return (False,"Couldn't make ssh connection") 
 	
 		if hostname is "null":

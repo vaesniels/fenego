@@ -26,7 +26,7 @@
                 period: '{{period}}'
                 company: '{{company}}'
                 email: '{{email}}'
-            on-success: "execute cmd" 
+            on-success: "executecmd" 
             on-failure: "send mail"  
         -
             name: "send mail"
@@ -36,7 +36,7 @@
             on-success: "Send to Slack" 
             on-failure: "Send to Slack"
         -
-            name: "execute cmd"
+            name: "executecmd"
             ref: fenego.ExecuteCommand
             parameters:
                 stackstormpath: '{{stackstormpath}}'
@@ -53,6 +53,6 @@
             name: "cmd to Slack"
             ref: fenego.Slack
             parameters:
-                message: '{{execute cmd.stdout}}'
+                message: '{{executecmd.stdout}}'
                      
     default: "checklog"

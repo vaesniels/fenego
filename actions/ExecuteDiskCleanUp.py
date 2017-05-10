@@ -74,6 +74,7 @@ class ExecuteDiskCleanUp(Action):
 					print "Toadd:" + email
 					print "Message:DiskCleanup on host:" + host + " Company:" + company + " Disk usage was: " + str(TotalDiskSpaceUsed) + "G " + " after clean up " + str(DiskSpaceAfterClean) + "G " + " only " + str(SpaceCleaned) + "G has been cleaned"
 					print "Subject:Diskcleanup didn't cleaned enough space"
+					print "Slack:DiskCleanup on host:" + host + " Company:" + company + " Disk usage was: " + str(TotalDiskSpaceUsed) + "G " + " after clean up " + str(DiskSpaceAfterClean) + "G " + " only " + str(SpaceCleaned) + "G has been cleaned"
 					return (False, "Didn't cleaned enough disk space")
 				   			
 	if hostname is "null":

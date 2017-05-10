@@ -33,6 +33,8 @@
             ref: fenego.Mail
             parameters:
                 message: "{{checklog.stdout}}" 
+            on-success: "send to Slack" 
+            on-failure: "send to Slack"
         -
             name: "execute cmd"
             ref: fenego.ExecuteCommand
@@ -41,7 +43,7 @@
                 host: '{{host}}'
                 cmd: '{{cmd}}'
                 company: '{{company}}'
-            on-success: "Send to Slack"
+            on-failure: "Send to Slack"
         -
             name: "Send to Slack"
             ref: fenego.Slack

@@ -33,6 +33,9 @@ class ExecuteCommand(Action):
 						returnvalue2 = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'"+ status +"\'")
 						if returnvalue2 == 0 :
 							return True
+						if returnvalue == 256 :
+							print "Slack:An error occured while trying to check the status, command: \"" + status + "\" is not found on the Host: " + host + " of Company: " + company
+							return (False,"Error executing command , Command not found")
 						else :
 							print "Slack: Executed the command: \"" + cmd + "\" on the Host: " + host + " of Company: " + company + " Successful, But the service is down again"
 							return (False,"Service started but went down again") 

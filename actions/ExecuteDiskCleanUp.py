@@ -11,6 +11,7 @@ class ExecuteDiskCleanUp(Action):
 	DiskSpaceToClean = 0.0
 	TotalDiskSpaceUsed= 0.0
 	DiskSpaceAfterClean = 0.0
+	Available = 0.0
 	try:
 		with open(stackstormpath +"SSH/"+ company + '_SSH') as ReadFile: 
 			for line in ReadFile:				  #Reads the file and loads the variables
@@ -59,6 +60,11 @@ class ExecuteDiskCleanUp(Action):
 						disk = output[x].split(" ")
 						while '' in disk :
 							disk.remove('')
+
+						if "M" in disk[2]
+						    diskused = disk[2].strip("M")
+						    diskused = diskused.replace(",",".")
+						    diskused = float(diskused) / 1024
 						if "G" in disk[2] :
 						    diskused = disk[2].strip("G")
 						    diskused = diskused.replace(",", ".")
@@ -66,15 +72,31 @@ class ExecuteDiskCleanUp(Action):
 						    diskused = disk[2].strip("T")
 						    diskused = diskused.replace(",", ".")
 						    diskused = float(diskused) * 1024
+				
+						if "M" in disk[3]
+						    diskavailable = disk[3].strip("M")
+						    diskavailable = diskavailable.replace(",",".")
+						    diskavailable = float(diskavailable) / 1024
+						if "G" in disk[3]
+						    diskavailable = disk[3].strip("G")
+						    diskavailable = diskavailable.replace(",",".")
+						if "T" in disk[3] :
+						    diskavailable = disk[3].strip("T")
+						    diskavailable = diskavailable.replace(",", ".")
+						    diskavailable = float(diskavailable) * 1024
+
 						DiskSpaceAfterClean += float(diskused)
+						Available += float(diskavailable) 
 					if DiskSpaceAfterClean <= (TotalDiskSpaceUsed - DiskSpaceToClean) :
 						return True 
 					else :
 						SpaceCleaned = TotalDiskSpaceUsed - DiskSpaceAfterClean
+
 						print "Toadd:" + email
 						print "Message:DiskCleanup on host:" + host + " Company:" + company + " Disk usage was: " + str(TotalDiskSpaceUsed) + "G " + " after clean up " + str(DiskSpaceAfterClean) + "G " + " only " + str(SpaceCleaned) + "G has been cleaned"
 						print "Subject:Diskcleanup didn't cleaned enough space"
-						print "Slack:DiskCleanup on Host:" + host + " Company:" + company + " Disk usage was: " + str(TotalDiskSpaceUsed) + "G " + " after clean up " + str(DiskSpaceAfterClean) + "G " + " only " + str(SpaceCleaned) + "G has been cleaned"
+
+						print "Slack:DiskCleanup has run on Host:" + host + "of Company:" + company + " Disk usage is: " + str(DiskSpaceAfterClean) + "G " + " Free disk space : " + str(Available) + "G " + ". DiskCleanUp cleaned : " + str(SpaceCleaned) + "G"
 						return (False, "Didn't cleaned enough disk space")
 					   			
 		if hostname is "null":

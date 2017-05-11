@@ -26,7 +26,7 @@ class ExecuteCommand(Action):
 					    #Creating an SSH connection with pem key and executing a command
 					    returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'"+ cmd +"\'")
 					    if returnvalue == 256 :
-						print "Slack:An error occured while trying to execute the command: \"" + cmd + "\" on the Host " + host + " of Company: " + company + " Errorcode 256 : Command not found"
+						print "Slack:An error occured while trying to execute the command: \"" + cmd + "\" on the Host: " + host + " of Company: " + company + " Errorcode 256 : Command not found"
 						return (False,"Error executing command , Command not found")
 					    if returnvalue == 0 :
 						if status != "" :
@@ -35,10 +35,10 @@ class ExecuteCommand(Action):
 							if returnvalue2 == 0 :
 								return True
 							else :
-								print "Slack: Executed the command: \"" + cmd + "\" on the Host " + host + " of Company: " + company + " Successful, But the service is down again"
+								print "Slack: Executed the command: \"" + cmd + "\" on the Host: " + host + " of Company: " + company + " Successful, But the service is down again"
 								return (False,"Service started but went down again") 
 					    else:
-							print "Slack:An error occured while trying to execute the command: \"" + cmd + "\", on the Host " + host + " of Company: " + company
+							print "Slack:An error occured while trying to execute the command: \"" + cmd + "\", on the Host: " + host + " of Company: " + company
 							return (False,"An error occurred when executing the command")
 							return True
 		except:

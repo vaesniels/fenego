@@ -25,7 +25,7 @@ class ExecuteCommand(Action):
 					    #Creating an SSH connection with pem key and executing a command
 					    returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'"+ cmd +"\'")
 					    if returnvalue != 0 :
-						print "Slack:An error occured while trying to execute the command: " + cmd + ", on the Host " + host + " of Company: " + company
+						print "Slack:An error occured while trying to execute the command: \"" + cmd + "\" on the Host " + host + " of Company: " + company
 						return (False,"Error executing command on remote host")
 		except:
 			print "Slack:Couldn't make SSH connection to the Host:" + host + " of Company: " + company

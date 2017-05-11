@@ -7,5 +7,5 @@ entry_point: "Mail.py"
 parameters:
     message: 
         type: "string"
-        required: true
+        required: false
 

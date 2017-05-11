@@ -8,6 +8,7 @@ from st2actions.runners.pythonrunner import Action
 class mail(Action):
     def run(self,message):
             y = 0
+	    toadd = ""
 	    MessageParts = message.split('\n')
 	    print MessageParts
 	    for x in MessageParts :
@@ -21,21 +22,21 @@ class mail(Action):
 		    subject = MessageParts[y].replace('Subject:', '')
 		    print subject
 		y = y + 1
+	    if toadd != "" :
+		    try:
+			server = smtplib.SMTP('smtp.gmail.com:587')
+			server.ehlo()
+			server.starttls()
+			server.login('StackstormTool@gmail.com', 'fenego101')
+			msg = MIMEText(text)
+			sender = 'stackstormtool@gmail.com'
+			recipients = toadd
+			msg['Subject'] = subject
+			msg['From'] = sender
+			msg['To'] = recipients
+			server.sendmail(sender, recipients.split(','), msg.as_string())
+			print("Mail Send Successfully")
+			server.quit()
 
-	    try:
-		server = smtplib.SMTP('smtp.gmail.com:587')
-		server.ehlo()
-		server.starttls()
-		server.login('StackstormTool@gmail.com', 'fenego101')
-		msg = MIMEText(text)
-		sender = 'stackstormtool@gmail.com'
-		recipients = toadd
-		msg['Subject'] = subject
-		msg['From'] = sender
-		msg['To'] = recipients
-		server.sendmail(sender, recipients.split(','), msg.as_string())
-		print("Mail Send Successfully")
-		server.quit()
-
-	    except:
-		print("Error:unable to send mail")
+		    except:
+			print("Error:unable to send mail")

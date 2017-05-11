@@ -13,6 +13,7 @@ Actions:
   - ExecuteCommand
   - Mail
   - Logchecker
+  - Slack
 
 ActionChains:
   - DiskCleanUpChain

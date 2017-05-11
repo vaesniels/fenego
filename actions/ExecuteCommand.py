@@ -37,10 +37,10 @@ class ExecuteCommand(Action):
 							else :
 								print "Slack: Executed the command: \"" + cmd + "\" on the Host " + host + " of Company: " + company + " Successful, But the service is down again"
 								return (False,"Service started but went down again") 
-						    else:
+					    else:
 							print "Slack:An error occured while trying to execute the command: \"" + cmd + "\", on the Host " + host + " of Company: " + company
 							return (False,"An error occurred when executing the command")
-						return True
+							return True
 		except:
 			print "Slack:Couldn't make SSH connection to the Host:" + host + " of Company: " + company
 			return (False,"Couldn't make ssh connection") 

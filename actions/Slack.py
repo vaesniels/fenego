@@ -15,5 +15,6 @@ class Slack(Action):
 		y = y + 1
 	msg = msg.replace("'", "")
 	msg = msg.replace('"', '')
+	msg = msg.replace("$newline", "\n")
 	os.system('curl -X POST --data-urlencode \'payload={"channel": "#general", "username": "StackStorm", "text" :" ' + msg + '"}\' https://hooks.slack.com/services/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')
 

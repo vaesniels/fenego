@@ -17,6 +17,7 @@ class mail(Action):
 		    print toadd
 		if MessageParts[y].startswith('Message:') :
 		    text = MessageParts[y].replace('Message:', '')
+		    text = text.replace('$newline', '\n')
 		    print text
 		if MessageParts[y].startswith('Subject:') :
 		    subject = MessageParts[y].replace('Subject:', '')

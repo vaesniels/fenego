@@ -21,6 +21,7 @@ class logchecker(Action):
 		ReadFile.truncate()
 		ReadFile.close()
 	except:
+		print "Slack:Error loading/editing the log file for Company: " + company
 		return (False, "Error loading the log file")
 	
 	try:
@@ -29,6 +30,7 @@ class logchecker(Action):
 				if host in line and alert_query in line:
 					times = times + 1
 	except:
+		print "Slack:Error reading the log file for Company: " + company
 		return (False, "Error reading the log file.")
 #When the numbers of errors extends the predefined allowed frequency. The script will send an e-mail telling you that the service failed to manny times.
 	if times > frequency :

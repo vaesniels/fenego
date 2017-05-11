@@ -61,7 +61,7 @@ class ExecuteDiskCleanUp(Action):
 						while '' in disk :
 							disk.remove('')
 
-						if "M" in disk[2]
+						if "M" in disk[2] :
 						    diskused = disk[2].strip("M")
 						    diskused = diskused.replace(",",".")
 						    diskused = float(diskused) / 1024
@@ -73,11 +73,11 @@ class ExecuteDiskCleanUp(Action):
 						    diskused = diskused.replace(",", ".")
 						    diskused = float(diskused) * 1024
 				
-						if "M" in disk[3]
+						if "M" in disk[3] :
 						    diskavailable = disk[3].strip("M")
 						    diskavailable = diskavailable.replace(",",".")
 						    diskavailable = float(diskavailable) / 1024
-						if "G" in disk[3]
+						if "G" in disk[3] :
 						    diskavailable = disk[3].strip("G")
 						    diskavailable = diskavailable.replace(",",".")
 						if "T" in disk[3] :
@@ -100,6 +100,7 @@ class ExecuteDiskCleanUp(Action):
 						return (False, "Didn't cleaned enough disk space")
 					   			
 		if hostname is "null":
+			print "Slack:DiskCleanUp could not find Host: " + host + " of Company:" + company + " in the SSH config file"
 			return (False,"hostname was not found")   	
 	except:
 		print "Slack:A error occurred while trying to preform a DiskCleanUp at Host: " + host + " of Company:" + company

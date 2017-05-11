@@ -17,4 +17,7 @@ parameters:
     stackstormpath: 
         type: "string"
         required: true
+    status: 
+        type: "string"
+        required: false
 

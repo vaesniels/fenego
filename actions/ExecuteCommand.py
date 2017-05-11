@@ -1,10 +1,11 @@
 import os
 import sys
+import time
 
 from st2actions.runners.pythonrunner import Action
 
 class ExecuteCommand(Action):
-    def run(self,host,company,cmd,stackstormpath):
+    def run(self,host,company,cmd,stackstormpath,status=""):
         
 	hostname = "null"
 
@@ -24,9 +25,20 @@ class ExecuteCommand(Action):
 					    Pempath = Credentials[2].strip("\'")
 					    #Creating an SSH connection with pem key and executing a command
 					    returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'"+ cmd +"\'")
-					    if returnvalue != 0 :
+					    if returnvalue == 256 :
+						print "Slack:An error occured while trying to execute the command: \"" + cmd + "\" on the Host " + host + " of Company: " + company + " Errorcode 256 : Command not found"
+						return (False,"Error executing command , Command not found")
+					    if returnvalue == 0 and status != "" :
+						time.sleep(30)
+						returnvalue2 = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'"+ status +"\'")
+						if returnvalue2 == 0 :
+							return True
+						else :
+							print "Slack: Executed the command: \"" + cmd + "\" on the Host " + host + " of Company: " + company + " Successful, But the service is down again"
+							return (False,"Service started but went down again") 
+					    else:
 						print "Slack:An error occured while trying to execute the command: \"" + cmd + "\" on the Host " + host + " of Company: " + company
-						return (False,"Error executing command on remote host")
+						return (False,"An error occurred when executing the command")
 		except:
 			print "Slack:Couldn't make SSH connection to the Host:" + host + " of Company: " + company
 			return (False,"Couldn't make ssh connection") 

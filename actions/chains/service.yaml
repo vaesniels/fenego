@@ -43,6 +43,7 @@
                 host: '{{host}}'
                 cmd: '{{cmd}}'
                 company: '{{company}}'
+                status: '{{status}}'
             on-failure: "cmd to Slack"
         -
             name: "Send to Slack"

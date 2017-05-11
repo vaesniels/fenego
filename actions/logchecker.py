@@ -4,7 +4,7 @@ import smtplib
 from st2actions.runners.pythonrunner import Action
 
 class logchecker(Action):
-    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company,stackstormpath,email):
+    def run(self, agg_key , alert_id , alert_metric, alert_query, alert_transition, alert_status, title,last_updated,date,event_type,body,user,link,priority,tags,host,snapshot,frequency , period , company,stackstormpath,email=""):
 
 	times = 0
 	SomeHoursAgo = datetime.now() - timedelta(hours=period) #Calculating a date 

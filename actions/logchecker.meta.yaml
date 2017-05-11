@@ -70,5 +70,5 @@ parameters:
         required: true
     email:
         type: "string"
-        required: true
+        required: false
 

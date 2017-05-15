@@ -1,6 +1,8 @@
 import os
 import sys
 import time
+import subprocess
+import datetime
 
 from st2actions.runners.pythonrunner import Action
 
@@ -28,17 +30,21 @@ class ExecuteCommand(Action):
 					print "Slack:An error occured while trying to execute the command: \"" + cmd + "\" on the Host: " + host + " of Company: " + company + " Errorcode 256 : Command not found"
 					return (False,"Error executing command , Command not found")
 				    if returnvalue == 0 :
-					if status != "" :
+					if status != "":
+					    now = datetime.datetime.now()
+					    nu = now.strftime('%Y%m%d')
+					    status = status + "console-" + str(nu) + ".log"
+					    for x in range(0, 10):
+						output = subprocess.check_output(
+						    "sudo ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'tail -200 "+status + " \'" , shell=True)
+						if "INFO: Server startup in" in output:
+						    x = 30
+						    started = "True"
 						time.sleep(30)
-						returnvalue2 = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'"+ status +"\'")
-						if returnvalue2 == 0 :
-							return True
-						if returnvalue == 256 :
-							print "Slack:An error occured while trying to check the status, command: \"" + status + "\" is not found on the Host: " + host + " of Company: " + company
-							return (False,"Error executing command , Command not found")
-						else :
-							print "Slack: Executed the command: \"" + cmd + "\" on the Host: " + host + " of Company: " + company + " Successful, But the service is down again"
-							return (False,"Service started but went down again") 
+					if started != "True" :
+						print "Slack:Executed the command : " + cmd + "\", on the Host: " + host + " of Company: " + company + " , But the service did nott start."
+						return (False,"Executed the command, but the service did not start")
+					    
 				    else:
 						print "Slack:An error occured while trying to execute the command: \"" + cmd + "\", on the Host: " + host + " of Company: " + company
 						return (False,"An error occurred when executing the command")

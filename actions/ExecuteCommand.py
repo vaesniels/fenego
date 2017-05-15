@@ -11,7 +11,7 @@ class ExecuteCommand(Action):
     def run(self, host, company, cmd, stackstormpath, status=""):
 
         hostname = "null"
-
+	started = "No"
         #try:  # trying to make an SSH connection and run a command
         with open(
                                         stackstormpath + "SSH/" + company + '_SSH') as ReadFile:  # Opens the SSH information file from the company.
@@ -46,8 +46,8 @@ class ExecuteCommand(Action):
                                     shell=True)
                                 if "INFO: Server startup in" in output:
                                     x = 10
-                                    started = "True"
-                        if started != "True":
+                                    started = "yes"
+                        if started != "yes":
                             print "Slack:Executed the command : " + cmd + "\", on the Host: " + host + " of Company: " + company + " , But the service did nott start."
                             return (False, "Executed the command, but the service did not start")
 

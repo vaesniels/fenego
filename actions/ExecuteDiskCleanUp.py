@@ -52,6 +52,11 @@ class ExecuteDiskCleanUp(Action):
 	#day will be sys.argv[4]
 					if returnvalue != 0 :
 						return (False,"Error executing pythonfile on remote host")
+					returnvalue = os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host  + " \'sudo find /tmp/FileWasToBig\'"
+					if returncode == 0:
+    						os.system("ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host  + " \'sudo rm /tmp/FileWasToBig\'"
+						msg = "A file on Host " + host + " of Company " + company + " could not be zipped because there was to less disk space, manual action is needed."
+						os.system('curl -X POST --data-urlencode \'payload={"channel": "#general", "username": "StackStorm", "text" :" ' + msg + '"}\' https://hooks.slack.com/services/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')
 
 					output = subprocess.check_output("sudo ssh -o StrictHostKeyChecking=No -i " + Pempath + " " + Username + "@" + Host + " \'df -h\'", shell=True)
 					output = output.split("\n")

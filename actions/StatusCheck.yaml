@@ -12,7 +12,17 @@ parameters:
         type: "string"
         required: true
     attempts: 
-        type: "integer"
+        type: "string"
         required: false
+    host: 
+        type: "string"
+        required: true
+    company: 
+        type: "string"
+        required: true 
+    stackstormpath: 
+        type: "string"
+        required: true
+
 
 

@@ -64,14 +64,21 @@
             on-failure: "ReturnFalse"
             on-success: "ReturnFalse"
         -
-            name: "ReturnFalse"
-            ref: fenego.ReturnFalse
-        -
             name: "cmd to Slack"
             ref: fenego.Slack
             parameters:
                 message: '{{executecmd.stdout}}'
             on-failure: "ReturnFalse"
             on-success: "ReturnFalse"
+        -
+            name: "ServiceChack to Slack"
+            ref: fenego.Slack
+            parameters:
+                message: '{{StatusCheck.stdout}}'
+            on-failure: "ReturnFalse"
+            on-success: "ReturnFalse"
+        -
+            name: "ReturnFalse"
+            ref: fenego.ReturnFalse
                      
     default: "checklog"

@@ -33,6 +33,8 @@
             ref: fenego.Mail
             parameters:
                 message: "{{Diskclean.stdout}}"
+            on-failure: "ReturnFalse"
+            on-success: "ReturnFalse"
         -
             name: "send to slack"
             ref: fenego.Slack
@@ -40,5 +42,8 @@
                 message: "{{Diskclean.stdout}}"
             on-failure: "send mail"
             on-success: "send mail"
+        -
+            name: "ReturnFalse"
+            ref: fenego.ReturnFalse
                      
     default: "Diskclean"

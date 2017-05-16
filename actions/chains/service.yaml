@@ -55,15 +55,23 @@
                 stackstormpath: '{{stackstormpath}}'
                 host: '{{host}}'
                 company: '{{company}}'
+            on-failure: "ReturnFalse"
         -
             name: "Send to Slack"
             ref: fenego.Slack
             parameters:
                 message: '{{checklog.stdout}}'
+            on-failure: "ReturnFalse"
+            on-success: "ReturnFalse"
+        -
+            name: "ReturnFalse"
+            ref: fenego.ReturnFalse
         -
             name: "cmd to Slack"
             ref: fenego.Slack
             parameters:
                 message: '{{executecmd.stdout}}'
+            on-failure: "ReturnFalse"
+            on-success: "ReturnFalse"
                      
     default: "checklog"

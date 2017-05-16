@@ -55,7 +55,7 @@
                 stackstormpath: '{{stackstormpath}}'
                 host: '{{host}}'
                 company: '{{company}}'
-            on-failure: "ReturnFalse"
+            on-failure: "ServiceCheck to Slack"
         -
             name: "Send to Slack"
             ref: fenego.Slack
@@ -71,7 +71,7 @@
             on-failure: "ReturnFalse"
             on-success: "ReturnFalse"
         -
-            name: "ServiceChack to Slack"
+            name: "ServiceCheck to Slack"
             ref: fenego.Slack
             parameters:
                 message: '{{StatusCheck.stdout}}'

@@ -52,6 +52,9 @@
                 logfile: '{{logfile}}' 
                 servicename: '{{servicename}}'
                 attempts: '{{attempts}}'
+                stackstormpath: '{{stackstormpath}}'
+                host: '{{host}}'
+                company: '{{company}}'
         -
             name: "Send to Slack"
             ref: fenego.Slack

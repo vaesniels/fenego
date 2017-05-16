@@ -30,7 +30,7 @@ class ServiceStatus(Action):
 	                now = datetime.datetime.now()
 	                nu = now.strftime('%Y%m%d')
 	                logfile = logfile + "console-" +str(nu) + ".log"
-			if attempts == ""
+			if attempts == "None" :
 				attempts = 10
 	                while x < int(attempts):
 	                    x = x + 1

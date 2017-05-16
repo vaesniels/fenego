@@ -45,7 +45,7 @@ action:
     cmd: 'sudo systemctl start nginx'
     email: 'tqwertyhgf@gmail.com'
     logfile: '/var/log/nginx/access.log'
-    servicename: 'hybris'
+    servicename: 'nginx'
 pack: fenego
 ref: fenego.fenego_nginx_can_connect
 id: 5908785798c9b708d4674aec

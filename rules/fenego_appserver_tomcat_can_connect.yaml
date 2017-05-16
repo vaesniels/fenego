@@ -47,6 +47,8 @@ action:
     frequency: '2'
     cmd: 'sudo systemctl restart hybris'
     email: 'tqwertyhgf@gmail.com'
+    logfile: '/opt/hybris/hybris/log/tomcat/'
+    servicename: 'hybris'
 pack: fenego
 ref: fenego.fenego_appserver_tomcat_can_connect
 id: 5908785798c9b708d4674aef

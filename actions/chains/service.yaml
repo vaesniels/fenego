@@ -44,6 +44,14 @@
                 cmd: '{{cmd}}'
                 company: '{{company}}'
             on-failure: "cmd to Slack"
+            on-success: "StatusCheck"
+        -
+            name: "StatusCheck"
+            ref: fenego.StatusCheck
+            parameters:
+                logfile: '{{logfile}}' 
+                servicename: '{{servicename}}'
+                attempts: '{{attempts}}'
         -
             name: "Send to Slack"
             ref: fenego.Slack

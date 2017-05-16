@@ -10,7 +10,7 @@ from st2actions.runners.pythonrunner import Action
 
 
 class ServiceStatus(Action):
-    def run(self, host, company, stackstormpath, servicename, logfile , attempts=10):
+    def run(self, host, company, stackstormpath, servicename, logfile , attempts):
         started = "No"
         with open(stackstormpath + "SSH/" + company + '_SSH') as ReadFile:  # Opens the SSH information file from the company.
             for line in ReadFile:  # Reads the file and loads the variables
@@ -30,6 +30,8 @@ class ServiceStatus(Action):
 	                now = datetime.datetime.now()
 	                nu = now.strftime('%Y%m%d')
 	                logfile = logfile + "console-" +str(nu) + ".log"
+			if attempts == ""
+				attempts = 10
 	                while x < int(attempts):
 	                    x = x + 1
 	                    time.sleep(30)

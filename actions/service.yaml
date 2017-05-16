@@ -80,7 +80,13 @@ parameters:
     email:
         type: "string"
         required: false
-    status:
+    logfile:
         type: "string"
+        required: true
+    servicename:
+        type: "string"
+        required: true
+    attempts:
+        type: "integer"
         required: false
 

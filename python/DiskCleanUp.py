@@ -52,7 +52,7 @@ for i in range(0, len(paths)):
                 filesize = filesize.replace(",", ".")
                 SizeOfFile = float(filesize) * 1024
             if ((SizeOfFile/100) * 20) > Available:
-		os.system("sudo touch /tmp/FileWasToBig")
+		os.system("sudo echo '" + values[0] + "' >> /tmp/FileWasToBig")
             else:
                 returncode = os.system("sudo gzip -f " + values[0])
 

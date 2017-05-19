@@ -1,9 +1,7 @@
 import os
-import sys
 import subprocess
 
 from st2actions.runners.pythonrunner import Action
-
 
 class ExecuteDiskCleanUp(Action):
     def run(self, agg_key, alert_id, alert_metric, alert_query, alert_transition, alert_status, title, last_updated,
@@ -109,7 +107,7 @@ class ExecuteDiskCleanUp(Action):
                     else:
                         SpaceCleaned = TotalDiskSpaceUsed - DiskSpaceAfterClean
 
-                        print "Toadd:" + email
+                        print "\nToadd:" + email
                         print "Message:DiskCleanup has run on Host:" + host + "of Company:" + company + "$newline Disk usage is: " + str(
                             DiskSpaceAfterClean) + "G " + " Free disk space : " + str(
                             Available) + "G " + ". DiskCleanUp cleaned : " + str(SpaceCleaned) + "G"

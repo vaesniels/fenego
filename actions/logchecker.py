@@ -1,5 +1,4 @@
 from datetime import datetime , timedelta
-import smtplib
 
 from st2actions.runners.pythonrunner import Action
 

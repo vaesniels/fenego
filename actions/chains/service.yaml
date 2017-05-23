@@ -26,6 +26,7 @@
                 period: '{{period}}'
                 company: '{{company}}'
                 email: '{{email}}'
+                servicename: '{{servicename}}'
             on-success: "executecmd" 
             on-failure: "send mail"  
         -

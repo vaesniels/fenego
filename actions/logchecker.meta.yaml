@@ -71,4 +71,7 @@ parameters:
     email:
         type: "string"
         required: false
+    servicename:
+        type: "string"
+        required: "true"
 

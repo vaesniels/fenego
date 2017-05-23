@@ -27,4 +27,4 @@ for x in range(3, len(outputlist)-2):
             output = subprocess.check_output("sudo st2 execution get " + ExecutionID + " -j", shell=True)
             output = output.split("[\n")
             #print output
-            os.system("curl -XPOST 'http://localhost:9200/pythontest/pythonjson/' -d \'" + output[0] + "\'")
+            os.system("curl -XPOST 'http://localhost:9200/stackstorm/actions/' -d \'" + output[0] + "\'")

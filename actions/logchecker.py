@@ -34,9 +34,9 @@ class logchecker(Action):
 #When the numbers of errors extends the predefined allowed frequency. The script will send an e-mail telling you that the service failed to manny times.
 	if times > frequency :
 		            print "Toadd:" + email
-		            print "Message:The procces '" + servicename +  "' failed to manny times within the time limit on host: " + host + ", aditional action is needed."
+		            print "Message:The procces: '" + servicename +  "' failed to manny times within the time limit on host: " + host + " of Company: " + company + ", aditional action is needed."
 			    print "Subject:Procces failed to manny times"
-			    print "Slack:The procces '" + servicename +  "' failed to manny times within the time limit on host: " + host + ", aditional action is needed."
+			    print "Slack:The procces: '" + servicename +  "' failed to manny times within the time limit on host: " + host + "of Company:" + company + ", aditional action is needed."
 			    return (False, "To manny restart attempts")
 
 	else:

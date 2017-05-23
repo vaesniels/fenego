@@ -4,13 +4,13 @@ import os
 import subprocess
 from datetime import datetime, timedelta
 
-now = datetime.utcnow()
-now = now.strftime('%Y-%m-%dT%H:%M:%S.000000Z')
-SomeTimeAgo = datetime.utcnow() - timedelta(minutes=1)
+SomeTimeAgo  = datetime.utcnow() - timedelta(minutes=15)
 SomeTimeAgo = SomeTimeAgo.strftime('%Y-%m-%dT%H:%M:%S.000000Z')
+LongerAgo = datetime.utcnow() - timedelta(minutes=16)
+LongerAgo = LongerAgo.strftime('%Y-%m-%dT%H:%M:%S.000000Z')
 #print now
 #print hourago
-output = subprocess.check_output("sudo st2 execution list -tg '" + SomeTimeAgo +"' -tl '"+ now +"' -n 100", shell=True)
+output = subprocess.check_output("sudo st2 execution list -tg '" + LongerAgo +"' -tl '"+ SomeTimeAgo +"' -n 100", shell=True)
 #print output
 outputlist = output
 outputlist = outputlist.split("\n")

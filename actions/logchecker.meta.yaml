@@ -73,5 +73,5 @@ parameters:
         required: false
     servicename:
         type: "string"
-        required: "true"
+        required: true
 

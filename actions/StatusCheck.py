@@ -37,11 +37,11 @@ class ServiceStatus(Action):
                     if "INFO: Server startup in" in output:
                         x = attempts
                         started = "Yes"
-                    if started == "Yes" :
-                        return True
-                    else:
-                        print "Slack:Hybris did not start on Host : " + host + " of Company: " + company
-                        return (False, "Hybris did not start")
+                 if started == "Yes" :
+                    return True
+                 else:
+                    print "Slack:Hybris did not start on Host : " + host + " of Company: " + company
+                    return (False, "Hybris did not start")
 
             if servicename.lower() == "nginx":
                 now = datetime.datetime.now()
